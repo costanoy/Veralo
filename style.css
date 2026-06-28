@@ -1,0 +1,171 @@
+/* =============================================
+   Cyberp - estilo da primeira versao
+   ============================================= */
+
+:root {
+    --laranja: #FF6A00;
+    /* cor de acento (identidade Cyberhat) */
+    --escuro: #1a1a1a;
+    --cinza: #f4f4f5;
+    --borda: #e0e0e0;
+    --vermelho: #d62828;
+    --texto-fraco: #777;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: system-ui, -apple-system, sans-serif;
+    background: var(--cinza);
+    color: var(--escuro);
+}
+
+.tela {
+    min-height: 100vh;
+}
+
+.escondido {
+    display: none;
+}
+
+/* ----- Cartoes ----- */
+.card {
+    background: #fff;
+    border: 1px solid var(--borda);
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 20px;
+}
+
+/* ----- Tela de login ----- */
+#tela-login:not(.escondido) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#tela-login .card {
+    width: 360px;
+    text-align: center;
+}
+
+.logo {
+    color: var(--laranja);
+    font-size: 32px;
+    letter-spacing: 1px;
+}
+
+.subtitulo {
+    color: var(--texto-fraco);
+    margin: 8px 0 20px;
+    font-size: 14px;
+}
+
+/* ----- Campos e botoes ----- */
+input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 12px;
+    border: 1px solid var(--borda);
+    border-radius: 8px;
+    font-size: 15px;
+}
+
+input:focus {
+    outline: none;
+    border-color: var(--laranja);
+    box-shadow: 0 0 0 2px rgba(255, 106, 0, 0.2);
+}
+
+button {
+    background: var(--laranja);
+    color: #fff;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    width: 100%;
+}
+
+button:hover {
+    opacity: 0.9;
+}
+
+.link {
+    background: none;
+    color: var(--texto-fraco);
+    width: auto;
+    padding: 4px 8px;
+    font-weight: 400;
+}
+
+/* ----- Cabecalho da tela principal ----- */
+header {
+    background: #fff;
+    border-bottom: 1px solid var(--borda);
+    padding: 16px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-pequeno {
+    color: var(--laranja);
+    font-weight: 700;
+    font-size: 20px;
+}
+
+/* ----- Conteudo ----- */
+main {
+    max-width: 720px;
+    margin: 24px auto;
+    padding: 0 16px;
+}
+
+h2 {
+    margin-bottom: 16px;
+}
+
+h3 {
+    margin-bottom: 12px;
+    font-size: 16px;
+}
+
+/* ----- Tabela de produtos ----- */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    text-align: left;
+    padding: 10px;
+    border-bottom: 1px solid var(--borda);
+    font-size: 14px;
+}
+
+th {
+    color: var(--texto-fraco);
+    font-weight: 600;
+}
+
+/* ----- Mensagens ----- */
+.erro {
+    color: var(--vermelho);
+    font-size: 13px;
+    margin-top: 8px;
+    min-height: 18px;
+}
+
+.vazio {
+    color: #999;
+    font-size: 14px;
+    padding: 12px 0;
+}

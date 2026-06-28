@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyberp</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- TELA DE LOGIN -->
+    <div id="tela-login" class="tela">
+        <div class="card">
+            <h1 class="logo">Cyberp</h1>
+            <p class="subtitulo">Entre para acessar sua loja</p>
+            <input id="login-email" type="email" placeholder="E-mail">
+            <input id="login-senha" type="password" placeholder="Senha">
+            <button id="btn-entrar">Entrar</button>
+            <p id="login-erro" class="erro"></p>
+        </div>
+    </div>
+
+    <!-- TELA PRINCIPAL (escondida até logar) -->
+    <div id="tela-app" class="tela escondido">
+        <header>
+            <span class="logo-pequeno">Cyberp</span>
+            <button id="btn-sair" class="link">Sair</button>
+        </header>
+
+        <main>
+            <h2>Produtos</h2>
+
+            <!-- Formulário de novo produto -->
+            <div class="card">
+                <h3>Novo produto</h3>
+                <input id="prod-nome" placeholder="Nome do produto">
+                <input id="prod-codigo" placeholder="Código de barras">
+                <input id="prod-preco" type="number" step="0.01" placeholder="Preço de venda (R$)">
+                <input id="prod-estoque" type="number" placeholder="Estoque inicial">
+                <button id="btn-salvar-produto">Salvar produto</button>
+                <p id="prod-erro" class="erro"></p>
+            </div>
+
+            <!-- Lista de produtos -->
+            <div class="card">
+                <h3>Meus produtos</h3>
+                <table id="tabela-produtos">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Código</th>
+                            <th>Preço</th>
+                            <th>Estoque</th>
+                        </tr>
+                    </thead>
+                    <tbody id="lista-produtos"></tbody>
+                </table>
+                <p id="lista-vazia" class="vazio">Nenhum produto cadastrado ainda.</p>
+            </div>
+        </main>
+    </div>
+
+    <!-- Biblioteca oficial do Supabase (vem da internet) -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <!-- Suas credenciais -->
+    <script src="config.js"></script>
+    <!-- A lógica do app -->
+    <script src="app.js"></script>
+</body>
+
+</html>
