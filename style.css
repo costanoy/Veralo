@@ -4,7 +4,6 @@
 
 :root {
     --laranja: #FF6A00;
-    /* cor de acento (identidade Cyberhat) */
     --escuro: #1a1a1a;
     --cinza: #f4f4f5;
     --borda: #e0e0e0;
@@ -32,7 +31,7 @@ body {
     display: none;
 }
 
-/* ----- Cartoes ----- */
+/* ----- Cartões ----- */
 .card {
     background: #fff;
     border: 1px solid var(--borda);
@@ -42,6 +41,9 @@ body {
 }
 
 /* ----- Tela de login ----- */
+/*  O :not(.escondido) garante que o display:flex só vale
+    ENQUANTO a tela não estiver escondida (senão o ID venceria
+    a classe e a tela nunca sumiria). */
 #tela-login:not(.escondido) {
     display: flex;
     align-items: center;
@@ -65,17 +67,20 @@ body {
     font-size: 14px;
 }
 
-/* ----- Campos e botoes ----- */
-input {
+/* ----- Campos, select e botões ----- */
+input,
+select {
     width: 100%;
     padding: 12px;
     margin-bottom: 12px;
     border: 1px solid var(--borda);
     border-radius: 8px;
     font-size: 15px;
+    background: #fff;
 }
 
-input:focus {
+input:focus,
+select:focus {
     outline: none;
     border-color: var(--laranja);
     box-shadow: 0 0 0 2px rgba(255, 106, 0, 0.2);
@@ -105,7 +110,7 @@ button:hover {
     font-weight: 400;
 }
 
-/* ----- Cabecalho da tela principal ----- */
+/* ----- Cabecalho e menu ----- */
 header {
     background: #fff;
     border-bottom: 1px solid var(--borda);
@@ -121,7 +126,21 @@ header {
     font-size: 20px;
 }
 
-/* ----- Conteudo ----- */
+.menu {
+    display: flex;
+    gap: 8px;
+}
+
+.menu .link {
+    font-weight: 600;
+    color: var(--escuro);
+}
+
+.menu .link:hover {
+    color: var(--laranja);
+}
+
+/* ----- Conteúdo ----- */
 main {
     max-width: 720px;
     margin: 24px auto;
@@ -137,7 +156,7 @@ h3 {
     font-size: 16px;
 }
 
-/* ----- Tabela de produtos ----- */
+/* ----- Tabelas ----- */
 table {
     width: 100%;
     border-collapse: collapse;
@@ -156,10 +175,44 @@ th {
     font-weight: 600;
 }
 
+/* ----- Venda ----- */
+#venda-codigo {
+    font-size: 18px;
+}
+
+.rotulo {
+    display: block;
+    font-size: 13px;
+    color: var(--texto-fraco);
+    margin-bottom: 6px;
+}
+
+.total-linha {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 0;
+    margin: 8px 0 16px;
+    border-top: 2px solid var(--escuro);
+    font-size: 20px;
+    font-weight: 700;
+}
+
+#venda-total {
+    color: var(--laranja);
+}
+
 /* ----- Mensagens ----- */
 .erro {
     color: var(--vermelho);
     font-size: 13px;
+    margin-top: 8px;
+    min-height: 18px;
+}
+
+.msg {
+    color: var(--texto-fraco);
+    font-size: 14px;
     margin-top: 8px;
     min-height: 18px;
 }
