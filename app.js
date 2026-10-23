@@ -6,6 +6,18 @@
 const db = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 const $ = (id) => document.getElementById(id);
 
+// Monta uma linha da tabela com textContent (e nao innerHTML), para que um
+// nome de produto como "<img onerror=...>" apareca como texto e nao rode.
+function linhaDaTabela(valores) {
+  const linha = document.createElement('tr');
+  valores.forEach((valor) => {
+    const celula = document.createElement('td');
+    celula.textContent = valor;
+    linha.appendChild(celula);
+  });
+  return linha;
+}
+
 const telaLogin = $('tela-login');
 const telaApp = $('tela-app');
 
@@ -34,7 +46,7 @@ $('btn-sair').addEventListener('click', async () => {
 
 function mostrarApp() {
   telaLogin.classList.add('escondido');
-  telaApp.classList.remove('escondido')''
+  telaApp.classList.remove('escondido');
   carregarProdutos();
 }
 
@@ -76,14 +88,12 @@ async function carregarProdutos() {
   $('lista-vazia').style.display = produtos.length ? 'none' : 'block';
 
   produtos.forEach((p) => {
-    const linha = document.createElement('tr');
-    linha.innerHTML = `
-      <td>${p.nome}</td>
-      <td>${p.codigo_barras || '-'}</td>
-      <td>R$ ${Number(p.preco_venda).toFixed(2)}</td>
-      <td>${p.estoque_atual}</td>
-    `;
-    lista.appendChild(linha);
+    lista.appendChild(linhaDaTabela([
+      p.nome,
+      p.codigo_barras || '-',
+      'R$ ' + Number(p.preco_venda).toFixed(2),
+      p.estoque_atual,
+    ]));
   });
 }
 
@@ -171,18 +181,16 @@ function desenharCarrinho() {
   carrinho.forEach((item) => {
     const subtotal = item.quantidade * item.preco_unitario;
     total += subtotal;
-    const linha = document.createElement('tr');
-    linha.innerHTML = `
-      <td>${item.conme}</td>
-      <td>${item.quantidade}</td>
-      <td>R$ ${item.quantidade}</td>
-      <td>R$ ${subtotal.toFixed(2)}</td>
-      `;
-    corpo.appendChild(linha);
+    corpo.appendChild(linhaDaTabela([
+      item.nome,
+      item.quantidade,
+      'R$ ' + item.preco_unitario.toFixed(2),
+      'R$ ' + subtotal.toFixed(2),
+    ]));
   });
 
   $('venda-total').textContent = 'R$ ' + total.toFixed(2);
-  $('carrinho-vazio').style.dispolay = carrinho.length ? 'none' : 'block';
+  $('carrinho-vazio').style.display = carrinho.length ? 'none' : 'block';
 }
 
 // Finalizar a venda: chama a função do banco (o tudo-ou-nada)
@@ -193,7 +201,7 @@ $('btn-finalizar').addEventListener('click', async () => {
   }
 
   // Monta a lista de itens no formato que a função espera
-  const itens = carrinho.map((i) => ((i) => ({
+  const itens = carrinho.map((i) => ({
     produto_id: i.produto_id,
     quantidade: i.quantidade,
     preco_unitario: i.preco_unitario,
